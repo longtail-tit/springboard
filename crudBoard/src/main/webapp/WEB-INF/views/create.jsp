@@ -16,6 +16,7 @@
 	<div><textarea name="content" id="content" cols="80" rows="4" placeholder="내용을 입력해주세요"></textarea></div>
 	<div>writer : <input type="text" name="writer" id="writer" placeholder="이름 입력" /></div>
 	<div>
+
 	<input type="submit" value="Done" />
 	</div>
 
