@@ -73,12 +73,14 @@ public class MainBoardController {
 	//게시글 수정 
 	@RequestMapping(value="/update", method= RequestMethod.GET)
 	public ModelAndView update(){
+		//1. 게시글 가져와서 
+		//2. 뿌리는 페이 지
 		return new ModelAndView("update");
 	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public ModelAndView upadteBoard(@RequestParam BoardVO vo) throws Exception{
-		
+		// 완료 -> update -> read페이지로 redirect 
 		ModelAndView mav = new ModelAndView();
 		
 		return mav;
