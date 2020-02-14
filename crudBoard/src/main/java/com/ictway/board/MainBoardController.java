@@ -60,7 +60,7 @@ public class MainBoardController {
 	public ModelAndView readBoard(@RequestParam int bno) throws Exception{
 		
 		System.out.println("여기는 게시글 상세 보기 ");
-		System.out.println("글번호 : "+ bno);
+		System.out.println("read 글번호 : "+ bno);
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -72,20 +72,34 @@ public class MainBoardController {
 	}
 	//게시글 수정 
 	@RequestMapping(value="/update", method= RequestMethod.GET)
-	public ModelAndView update(){
+	public ModelAndView update(@RequestParam int bno) throws Exception{
 		//1. 게시글 가져와서 
 		//2. 뿌리는 페이 지
-		return new ModelAndView("update");
-	}
-	
-	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public ModelAndView upadteBoard(@RequestParam BoardVO vo) throws Exception{
-		// 완료 -> update -> read페이지로 redirect 
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("board",boardService.readBoard(bno));
+		mav.setViewName("update");
 		
 		return mav;
 	}
-
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String upadteBoard(@ModelAttribute("BoardVO") BoardVO vo) throws Exception{
+		// 완료 -> update -> read페이지로 redirect 
+		System.out.println(vo.getBno());
+		boardService.updateBoard(vo);
+		
+		      
+		return "redirect:/board/read?bno="+vo.getBno();
+	}         
+	
+	// 게시글 삭제 
+	@RequestMapping(value="/delete", method = RequestMethod.GET)
+	public String delete(@RequestParam int bno) throws Exception {
+		
+		boardService.deleteBoard(bno);
+		
+		return "redirect:/board";
+	}
 }
 
 

@@ -31,4 +31,16 @@ FROM tbl_board
 WHERE bno = #{bno}
 </select>
 
+<update id="updateBoard" >
+UPDATE tbl_board
+SET title = '${title}'
+, content = '${content}'
+,writer = '${writer}'
+WHERE bno = #{bno}
+</update>
+
 </mapper>
+
+
+
+

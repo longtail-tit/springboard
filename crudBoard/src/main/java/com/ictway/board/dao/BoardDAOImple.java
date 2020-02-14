@@ -29,7 +29,8 @@ public class BoardDAOImple implements BoardDAO{
 
 	@Override
 	public void updateBoard(BoardVO vo) throws Exception {
-		sqlsession.update("board.updateArticle",vo);
+		System.out.println("updateAOIMPL~!!");
+		sqlsession.update("board.updateBoard",vo);
 	}
 
 	@Override

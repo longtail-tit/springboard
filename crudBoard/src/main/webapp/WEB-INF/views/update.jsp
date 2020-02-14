@@ -11,12 +11,13 @@
 <h1>
 	Create Article
 </h1>
-<form action="/board/create" method="post">
-    <div>title : <input type="text" name="title" id="title" size="80" placeholder="제목을 입력해주세요 " /></textarea></div>	
-	<div><textarea name="content" id="content" cols="80" rows="4" placeholder="내용을 입력해주세요"></textarea></div>
-	<div>writer : <input type="text" name="writer" id="writer" placeholder="이름 입력" /></div>
+<form action="/board/update" method="post">
+    <div>title : <input type="text" name="title" id="title" size="80" value="${board.title }"/></textarea></div>	
+	<div><textarea name="content" id="content" cols="80" rows="4">${board.content }</textarea></div>
+	<div>writer : <input type="text" name="writer" id="writer" value="${board.writer }" /></div>
 	<div>
-	<input type="submit" value="Done" />
+		<input type="hidden" value="${board.bno }" name="bno" id="bno" />
+	<input type="submit" value="Edit" />
 	</div>
 
 </form>

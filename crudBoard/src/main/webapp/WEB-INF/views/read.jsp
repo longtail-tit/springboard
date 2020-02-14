@@ -11,7 +11,7 @@
 <body>
 <h2>Article</h2>
 
-<form action="/board/read" method="post">
+<form action="/board/read" method="POST">
 	<div>
 	작성 일자 : <fmt:formatDate value="${board.regdate}" pattern="yyy-MM-dd HH:mm:ss"/>
 	</div>
@@ -31,8 +31,9 @@
 	<div>
 	 <!-- 게시글 번호를 hidden 처리 -->
 	 <input type="hidden" name="bno" value="${board.bno}" />
-	 <button type="button" onclick="location.href='/board/update'">수정</button>
-	 <button type="button">삭제</button>
+	 <button type="button" onclick="location.href='/board/update?bno=${board.bno}'">수정</button>
+	 <button type="button" onclick="location.href='/board/delete?bno=${board.bno}'">삭제</button>
+	 <button type="button" onclick="location.href='/board">목록</button>
 	</div>
 </form>
 
