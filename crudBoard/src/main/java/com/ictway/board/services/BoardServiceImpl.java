@@ -38,6 +38,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoard(int bno) throws Exception {
 		// TODO Auto-generated method stub
+		boardDao.deleteBoard(bno);
 		
 	}
 

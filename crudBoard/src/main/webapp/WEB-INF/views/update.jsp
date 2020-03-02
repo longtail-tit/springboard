@@ -17,7 +17,7 @@
 	<div>writer : <input type="text" name="writer" id="writer" value="${board.writer }" /></div>
 	<div>
 		<input type="hidden" value="${board.bno }" name="bno" id="bno" />
-	<input type="submit" value="Edit" />
+		<input type="submit" value="Edit" />
 	</div>
 
 </form>

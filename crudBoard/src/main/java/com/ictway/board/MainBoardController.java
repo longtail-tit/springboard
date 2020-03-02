@@ -17,7 +17,7 @@ import com.ictway.board.model.BoardVO;
 import com.ictway.board.services.BoardService;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/")
 public class MainBoardController {
 	private static final Logger logger = LoggerFactory.getLogger(MainBoardController.class);
 
@@ -32,7 +32,7 @@ public class MainBoardController {
 	
 	
 	// 게시글 목록 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping( method=RequestMethod.GET)
 	public ModelAndView boardlist() throws Exception{
 		//1.리스트 객체 
 		List<BoardVO> list = boardService.listBoard();
@@ -89,7 +89,7 @@ public class MainBoardController {
 		boardService.updateBoard(vo);
 		
 		      
-		return "redirect:/board/read?bno="+vo.getBno();
+		return "redirect:/read?bno="+vo.getBno();
 	}         
 	
 	// 게시글 삭제 
@@ -98,7 +98,7 @@ public class MainBoardController {
 		
 		boardService.deleteBoard(bno);
 		
-		return "redirect:/board";
+		return "redirect:/";
 	}
 }
 

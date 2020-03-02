@@ -31,6 +31,8 @@ FROM tbl_board
 WHERE bno = #{bno}
 </select>
 
+
+<!-- 게시글 수정 -->
 <update id="updateBoard" >
 UPDATE tbl_board
 SET title = '${title}'
@@ -38,6 +40,13 @@ SET title = '${title}'
 ,writer = '${writer}'
 WHERE bno = #{bno}
 </update>
+
+
+<!-- 게시글 삭제 -->
+<delete id="deleteArticle" parameterType="java.lang.Integer">
+DELETE tbl_board 
+WHERE bno = #{bno}
+</delete>
 
 </mapper>
 

@@ -33,7 +33,7 @@
 	 <input type="hidden" name="bno" value="${board.bno}" />
 	 <button type="button" onclick="location.href='/board/update?bno=${board.bno}'">수정</button>
 	 <button type="button" onclick="location.href='/board/delete?bno=${board.bno}'">삭제</button>
-	 <button type="button" onclick="location.href='/board">목록</button>
+	 <button type="button" onclick="location.href='/board'">목록</button>
 	</div>
 </form>
 
