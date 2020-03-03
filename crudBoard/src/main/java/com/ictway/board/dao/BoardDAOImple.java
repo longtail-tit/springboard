@@ -8,9 +8,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ictway.board.model.BoardVO;
+import com.ictway.board.model.PagingVO;
 
 @Repository //현재 클래스를 dao bean 으로 등록 
 public class BoardDAOImple implements BoardDAO{
+	
+	
 	
 	@Inject
 	SqlSession sqlsession;
@@ -41,6 +44,20 @@ public class BoardDAOImple implements BoardDAO{
 	@Override
 	public List<BoardVO> listBoard() throws Exception {
 		return sqlsession.selectList("board.listAll");
+	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		System.out.println("countBoard?!?!?!?!?!?@@@@@");
+		return sqlsession.selectOne("board.countBoard");
+	
+	}
+
+	@Override
+	public List<BoardVO> selectBoard(PagingVO vo) {
+		
+		return sqlsession.selectList("board.selectBoard",vo);
 	}
 
 

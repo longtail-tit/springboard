@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ictway.board.model.BoardVO;
+import com.ictway.board.model.PagingVO;
 import com.ictway.board.services.BoardService;
 
 @Controller
@@ -24,14 +26,7 @@ public class MainBoardController {
 	@Inject
 	BoardService boardService;
 	
-/*	@RequestMapping("/board.do")
-	public String mainboard(){
-		logger.info("This is the main board~!!!!!");
-		return "/board";
-	}*/
-	
-	
-	// 게시글 목록 
+/*	// 게시글 목록 
 	@RequestMapping( method=RequestMethod.GET)
 	public ModelAndView boardlist() throws Exception{
 		//1.리스트 객체 
@@ -39,6 +34,31 @@ public class MainBoardController {
 		System.out.println("this tis boardlist");
 
 		return new ModelAndView("list", "list", list);
+	}*/
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public String boardList(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) throws Exception {
+		
+		
+	//	System.out.println(">>>> nowPage : " + nowPage);
+	//	System.out.println(">>>> cntPerPage : " + cntPerPage);
+		int total = boardService.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+
+		model.addAttribute("paging", vo);
+		List<BoardVO> list = boardService.selectBoard(vo);
+		model.addAttribute("list", list);
+		return "listPaging";
 	}
 	
 	//게시글 작성 
@@ -52,7 +72,7 @@ public class MainBoardController {
 	public String  create(@ModelAttribute("BoardVO") BoardVO vo) throws Exception{
 		boardService.createBoard(vo);
 		
-		return "redirect:/board";
+		return "redirect:/";
 	}
 	
 	//게시글 상세보기
@@ -67,12 +87,15 @@ public class MainBoardController {
 		System.out.println(boardService.readBoard(bno).getContent());
 		mav.addObject("board",boardService.readBoard(bno));
 		mav.setViewName("/read");
-		
+	
 		return mav;
 	}
 	//게시글 수정 
 	@RequestMapping(value="/update", method= RequestMethod.GET)
 	public ModelAndView update(@RequestParam int bno) throws Exception{
+		
+		
+		
 		//1. 게시글 가져와서 
 		//2. 뿌리는 페이 지
 		ModelAndView mav = new ModelAndView();
@@ -100,6 +123,11 @@ public class MainBoardController {
 		
 		return "redirect:/";
 	}
+	
+	
+	
+	
+	
 }
 
 

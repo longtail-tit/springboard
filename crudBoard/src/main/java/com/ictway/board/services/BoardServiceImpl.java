@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ictway.board.dao.BoardDAO;
 import com.ictway.board.model.BoardVO;
+import com.ictway.board.model.PagingVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -46,6 +47,18 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> listBoard() throws Exception {
 		
 		return boardDao.listBoard();
+	}
+
+	@Override
+	public int countBoard() {
+		
+		return boardDao.countBoard();
+	}
+
+	@Override
+	public List<BoardVO> selectBoard(PagingVO vo) {
+		
+		return boardDao.selectBoard(vo);
 	}
 
 }

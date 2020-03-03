@@ -48,6 +48,23 @@ DELETE tbl_board
 WHERE bno = #{bno}
 </delete>
 
+<!-- **페이징처리** -->
+<!-- 총 게시글 갯수 출력 -->
+<select id="countBoard" resultType="java.lang.Integer">
+SELECT COUNT(*) FROM tbl_board
+</select>
+
+<!-- 페이징 처리 후 게시글 조회 -->
+<select id="selectBoard" resultType="com.ictway.board.model.BoardVO">
+select * 
+from (
+    select rownum rn, A.* from (
+        select * from tbl_board order by bno desc
+    ) A
+)
+where rn between #{start} and #{end} 
+</select>
+
 </mapper>
 
 
