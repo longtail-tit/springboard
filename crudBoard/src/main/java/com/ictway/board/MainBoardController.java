@@ -1,5 +1,6 @@
 package com.ictway.board;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -78,13 +79,13 @@ public class MainBoardController {
 	//게시글 상세보기
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public ModelAndView readBoard(@RequestParam int bno) throws Exception{
+
 		
-		System.out.println("여기는 게시글 상세 보기 ");
-		System.out.println("read 글번호 : "+ bno);
-		
+		//조회수 증가 
+		int cnt = boardService.updateViewcnt(bno);
+
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println(boardService.readBoard(bno).getContent());
 		mav.addObject("board",boardService.readBoard(bno));
 		mav.setViewName("/read");
 	
@@ -93,9 +94,6 @@ public class MainBoardController {
 	//게시글 수정 
 	@RequestMapping(value="/update", method= RequestMethod.GET)
 	public ModelAndView update(@RequestParam int bno) throws Exception{
-		
-		
-		
 		//1. 게시글 가져와서 
 		//2. 뿌리는 페이 지
 		ModelAndView mav = new ModelAndView();
@@ -124,7 +122,7 @@ public class MainBoardController {
 		return "redirect:/";
 	}
 	
-	
+
 	
 	
 	

@@ -14,7 +14,6 @@ import com.ictway.board.model.PagingVO;
 public class BoardDAOImple implements BoardDAO{
 	
 	
-	
 	@Inject
 	SqlSession sqlsession;
 
@@ -26,7 +25,7 @@ public class BoardDAOImple implements BoardDAO{
 
 	@Override
 	public BoardVO readBoard(int bno) throws Exception {
-		System.out.println("DAOIMPLE~!!: "+bno);
+		
 		return sqlsession.selectOne("board.view", bno);
 	}
 
@@ -38,6 +37,7 @@ public class BoardDAOImple implements BoardDAO{
 
 	@Override
 	public void deleteBoard(int bno) throws Exception {
+		System.out.println("삭제할게..");
 		sqlsession.delete("board.deleteArticle",bno);
 	}
 
@@ -48,16 +48,21 @@ public class BoardDAOImple implements BoardDAO{
 
 	@Override
 	public int countBoard() {
-		// TODO Auto-generated method stub
+	
 		System.out.println("countBoard?!?!?!?!?!?@@@@@");
 		return sqlsession.selectOne("board.countBoard");
-	
 	}
 
 	@Override
 	public List<BoardVO> selectBoard(PagingVO vo) {
-		
 		return sqlsession.selectList("board.selectBoard",vo);
+	}
+
+	@Override
+	public int updateViewcnt(int bno) throws Exception {
+		System.out.println("조회수 증가한다고 말했다 ~~");
+		return sqlsession.update("updateViewcnt", bno);
+		
 	}
 
 

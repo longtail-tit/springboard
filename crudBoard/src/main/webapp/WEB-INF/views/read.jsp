@@ -20,6 +20,13 @@
     }
 
 </style>
+<script>
+$(document).ready(function(){
+  $(".btn-danger").onclick(function(){
+	  alert("Do you want to remove this article");
+  })
+});
+</script>
 </head>
 <body>
 

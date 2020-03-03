@@ -23,5 +23,7 @@ public interface BoardDAO {
 	// 페이징 처리 게시글 조회
 	public List<BoardVO> selectBoard(PagingVO vo);
 	
+	//조회수 증가 
+	public int updateViewcnt(int bno) throws Exception;
 
 }

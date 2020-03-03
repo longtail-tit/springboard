@@ -19,8 +19,8 @@ public interface BoardService {
 	public List<BoardVO> listBoard() throws Exception;
 	// 게시물 총 갯수
 	public int countBoard();
-
 	// 페이징 처리 게시글 조회
 	public List<BoardVO> selectBoard(PagingVO vo);
-
+	// 조회수 등가 
+	public int updateViewcnt(int bno) throws Exception;
 }

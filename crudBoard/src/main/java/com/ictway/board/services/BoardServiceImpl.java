@@ -20,6 +20,7 @@ public class BoardServiceImpl implements BoardService{
 	public void createBoard(BoardVO vo) throws Exception {
 		// 게시글 글쓰기 
 		boardDao.createBoard(vo);
+		System.out.println("돌아왔노..");
 		System.out.println("this is boardDAO");
 	}
 
@@ -60,5 +61,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		return boardDao.selectBoard(vo);
 	}
+
+	@Override
+	public int updateViewcnt(int bno) throws Exception {
+		System.out.println("조회수 증가한다 ~~?");
+		return boardDao.updateViewcnt(bno);
+	}
+
 
 }

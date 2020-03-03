@@ -38,6 +38,7 @@ UPDATE tbl_board
 SET title = '${title}'
 , content = '${content}'
 ,writer = '${writer}'
+, regdate = sysdate
 WHERE bno = #{bno}
 </update>
 
@@ -64,6 +65,17 @@ from (
 )
 where rn between #{start} and #{end} 
 </select>
+
+<!-- 조회수 증가 -->
+<update id = "updateViewcnt">
+UPDATE tbl_board
+SET viewcnt = viewcnt + 1
+WHERE bno = #{bno}
+</update>
+
+
+
+
 
 </mapper>
 

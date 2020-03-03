@@ -21,13 +21,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <body>
 <div id = "container">
-	<h1>Create Article</h1>
+	<h1>Update Article</h1>
 	<hr />
 	
 	<form action="/board/update" method="post">
 	    <div class="form-group">title  <input class="form-control" type="text" name="title" id="title" size="80" value="${board.title }"/></textarea></div>	
 		<div class="form-group">content  <textarea  class="form-control" name="content" id="content" cols="80" rows="4">${board.content }</textarea></div>
-		<div class="form-group">writer  <input  class="form-control" type="text" name="writer" id="writer" value="${board.writer }" /></div>
+		<div class="form-group">writer  <input  class="form-control" type="text" name="writer" id="writer" value="${board.writer }" readonly="readonly"/></div>
 		<div>
 			<input type="hidden" value="${board.bno }" name="bno" id="bno" />
 			<input type="submit" value="Edit" />
